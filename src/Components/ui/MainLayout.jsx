@@ -1,11 +1,13 @@
-
+import Navbar from "./Navbar";
+import Banner from "../../pages/Banner";
 
 const MainLayout = () => {
-    return (
-        <div>
-            <h1 className="color-primay">Hello world</h1>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar />
+      <Banner />
+    </div>
+  );
 };
 
 export default MainLayout;
