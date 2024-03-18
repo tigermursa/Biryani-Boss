@@ -32,3 +32,10 @@
   /* font-weight: <weight>;
   font-style: normal; */
 }
+
+/* Item card font */
+.item-card-font {
+  font-family: "Lusitana", serif;
+  font-weight: 700;
+  font-style: normal;
+}
