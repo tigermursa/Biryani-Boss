@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-primary {
+  background-color: red;
+}
+
+.text-primary {
+  color: red;
+}
+
+.text-secondary {
+  color: white;
+}
