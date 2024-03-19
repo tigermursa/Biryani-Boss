@@ -1,69 +1,109 @@
+import { useState } from "react";
+import data from "../Database/data";
+
 const Menu = () => {
-  const data = [
-    {
-      id: "001",
-      name: "Special polished rice",
-      price: 190,
-      quantity: "4 persons",
-      imageUrl:
-        "https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg",
-    },
-    {
-      id: "002",
-      name: "Organic brown rice",
-      price: 250,
-      quantity: "3 persons",
-      imageUrl:
-        "https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg",
-    },
-    {
-      id: "002",
-      name: "Organic brown rice",
-      price: 250,
-      quantity: "3 persons",
-      imageUrl:
-        "https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg",
-    },
-    {
-      id: "002",
-      name: "Organic brown rice",
-      price: 250,
-      quantity: "3 persons",
-      imageUrl:
-        "https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg",
-    },
-    // Other items
-  ];
+  const [selectedCategory, setSelectedCategory] = useState("popular");
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen">
       <h1 className="text-5xl item-card-font mb-20 text-center mt-10">
         Our <span className="text-primary">Special</span> Menu
       </h1>
+
+      <div className="mb-10 flex justify-center">
+        <ul className="flex gap-5">
+          <li>
+            <button
+              className={` border border-red-600   p-3 text-xl font-semibold rounded-3xl ${
+                selectedCategory === "popular" && "bg-red-600 text-white "
+              }`}
+              onClick={() => handleCategoryClick("popular")}
+            >
+              Popular
+            </button>
+          </li>
+          <li>
+            <button
+              className={` border border-red-600  p-3 text-xl font-semibold rounded-3xl ${
+                selectedCategory === "kacchi" && "bg-red-600 text-white"
+              }`}
+              onClick={() => handleCategoryClick("kacchi")}
+            >
+              Kacchi
+            </button>
+          </li>
+          <li>
+            <button
+              className={`bg-none border border-red-600  p-3 text-xl font-semibold rounded-3xl ${
+                selectedCategory === "polaw" && "bg-red-600 text-white "
+              }`}
+              onClick={() => handleCategoryClick("polaw")}
+            >
+              Polaw
+            </button>
+          </li>
+          <li>
+            <button
+              className={`bg-none border border-red-600  p-3 text-xl font-semibold rounded-3xl ${
+                selectedCategory === "chui-ghoshto" && "bg-red-600 text-white "
+              }`}
+              onClick={() => handleCategoryClick("chui-ghoshto")}
+            >
+              Chui-ghoshto
+            </button>
+          </li>
+          <li>
+            <button
+              className={`bg-none border border-red-600  p-3 text-xl font-semibold rounded-3xl ${
+                selectedCategory === "drinks" && "bg-red-600 text-white "
+              }`}
+              onClick={() => handleCategoryClick("drinks")}
+            >
+              Drinks
+            </button>
+          </li>
+          <li>
+            <button
+              className={`bg-none border border-red-600  p-3 text-xl font-semibold rounded-3xl ${
+                selectedCategory === "others" && "bg-red-600 text-white "
+              }`}
+              onClick={() => handleCategoryClick("others")}
+            >
+              Others
+            </button>
+          </li>
+        </ul>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {data.map((item) => (
-          <div
-            key={item.id}
-            className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer"
-          >
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4 text-center mt-5 mb-3">
-              <h2 className="text-xl  item-card-font mb-2">{item.name}</h2>
-              <div className=" flex  justify-center gap-2 font-semibold mt-8">
-                <p className="mb-2 bg-primary text-white p-2 rounded-lg text-sm">
-                  Price: ${item.price}
-                </p>
-                <p className="mb-2 bg-primary text-white p-2 rounded-lg text-sm">
-                  Serving: {item.quantity}
-                </p>
+        {data
+          .filter((item) => item.category === selectedCategory)
+          .map((item) => (
+            <div
+              key={item.id}
+              className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer"
+            >
+              <img
+                src={item.imageUrl}
+                alt={item.name}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4 text-center mt-5 mb-3">
+                <h2 className="text-xl  item-card-font mb-2">{item.name}</h2>
+                <div className=" flex  justify-center gap-2 font-semibold mt-8">
+                  <p className="mb-2 bg-primary text-white p-2 rounded-lg text-sm">
+                    Price: ${item.price}
+                  </p>
+                  <p className="mb-2 bg-primary text-white p-2 rounded-lg text-sm">
+                    Serving: {item.quantity}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
